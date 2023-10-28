@@ -11,8 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
-    }
+        Schema::create('atleta_campeonato', function (Blueprint $table){
+            $table->id();
+            $table->foreignId('atleta_id')->constrained();
+            $table->foreignId('campeonato_id')->constrained();
+            $table->date('dataDaInscricao');
+            
+        });
+    }   
 
     /**
      * Reverse the migrations.
