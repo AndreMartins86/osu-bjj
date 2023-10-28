@@ -2,7 +2,7 @@
 
 @section('title', 'Campeonato de Jiu Jitsu')
 
-@section('conteudo')
+@section('conteudo') 
     <header>
       <nav class="bg-white border-gray-200">
         <div
