@@ -18,7 +18,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('resultados', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('campeonato_id')->constrained();
+            $table->foreignId('genero_id')->constrained();
             $table->foreignId('faixa_id')->constrained();
             $table->foreignId('peso_id')->constrained();
             $table->string('primeiroColocado');

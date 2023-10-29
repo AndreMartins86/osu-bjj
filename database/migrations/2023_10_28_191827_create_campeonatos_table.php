@@ -34,8 +34,7 @@ return new class extends Migration
             $table->text('sobre');
             $table->string('local');
             $table->text('informacoes');
-            $table->text('entradaPublico')->nullable();
-            $table->foreignId('genero_id')->constrained();
+            $table->text('entradaPublico')->nullable();            
             $table->foreignId('tipo_id')->constrained();
             $table->foreignId('fase_id')->constrained();
             $table->boolean('ativo');

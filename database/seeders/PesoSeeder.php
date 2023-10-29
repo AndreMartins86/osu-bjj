@@ -17,7 +17,7 @@ class PesoSeeder extends Seeder
                 'peso' => 'Leve'                
             ]);
         DB:table('pesos')->insert([
-                'faixa' => 'Pesado'
+                'peso' => 'Pesado'
             ]);
     }
 }
