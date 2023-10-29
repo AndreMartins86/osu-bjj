@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class CampeonatoFactory extends Factory
 {
+        // id  titulo  imagem  cidade  estado_id   dataCampeonato  sobre   local   informacoes entradaPublico  genero_id   tipo_id fase_id ativo   created_at  updated_at  
     /**
      * Define the model's default state.
      *
@@ -16,8 +17,9 @@ class CampeonatoFactory extends Factory
      */
     public function definition(): array
     {
+        
         return [
-            //
+            
         ];
     }
 }

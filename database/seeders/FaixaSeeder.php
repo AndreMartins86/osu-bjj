@@ -6,21 +6,18 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class GeneroSeeder extends Seeder
+class FaixaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-         DB:table('generos')->insert([
-                'genero' => 'Feminino',
-                'abbr' => 'F'
+        DB:table('faixas')->insert([
+                'faixa' => 'Marrom'                
             ]);
-
-         DB:table('generos')->insert([
-                'genero' => 'Masculino',
-                'abbr' => 'M'
+        DB:table('faixas')->insert([
+                'faixa' => 'Preta'
             ]);
     }
 }

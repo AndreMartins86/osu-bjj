@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Atleta extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'nome',
+        'email',
+        'password',
+        'dataDeNascimento',
+        'cpf',
+        'equipe'
+    ];
+  
+    protected $hidden = [
+        'password',        
+    ];
 }
