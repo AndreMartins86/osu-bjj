@@ -28,19 +28,26 @@ class CampeonatoSeeder extends Seeder
             'Maia Championship Nacional 2023'
         ];
 
+        $imagem = [
+            'img/torneio-card.jpg',
+            'img/torneio1.jpeg',
+            'img/torneio2.jpg'
+        ];
+
         $j = count($titulos);
         $cidade = '';
         $tipo = '';
+        $cont = 0;
 
             // titulo  imagem  cidade  estado_id   dataCampeonato  sobre   local   informacoes entradaPublico  genero_id   tipo_id fase_id ativo   created_at  updated_at
 
         for ($i=0; $i < $j ; $i++) { 
              Campeonato::create([
                 'titulo' => $titulos[$i],
-                'imagem' => 'img/torneio-card.jpg',
+                'imagem' => $imagem[$cont],
                 'cidade' => $cidade,
                 'estado_id' => '25',
-                'dataCampeonato' => fake()->date(),
+                'dataCampeonato' => fake()->dateTimeBetween('-2 years', 'now'),
                 'sobre' => fake()->text(),
                 'local' => 'Ginásio Municipal',
                 'informacoes' => fake()->text(),
@@ -52,6 +59,11 @@ class CampeonatoSeeder extends Seeder
 
              $tipo = ($i < 5) ? 'Kimono' : 'No-Gi';
              $cidade = ($i < 5) ? 'Praia Grande' : 'Santos';
+
+             $cont++;
+             if ($cont > 2) {
+                 $cont = 0;
+             }
             
         }       
     }
