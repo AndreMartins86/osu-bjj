@@ -12,9 +12,7 @@ class ResultadoSeeder extends Seeder
      */
     public function run(): void
     {
-    // campeonato_id faixa_id peso_id primeiroColocado segundoColocado terceiroColocado created_at  updated_at
-
-        
+    // campeonato_id faixa_id peso_id primeiroColocado segundoColocado terceiroColocado created_at  updated_at        
 
         for ($i=1; $i< 3 ; $i++) {
             Resultado::create([
