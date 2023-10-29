@@ -13,15 +13,15 @@ class FaseSeeder extends Seeder
      */
     public function run(): void
     {
-        DB:table('fases')->insert([
+        DB::table('fases')->insert([
             'fase' => 'Inscrições Abertas'
         ]);
 
-         DB:table('fases')->insert([
+         DB::table('fases')->insert([
             'fase' => 'Chaves de Luta'
         ]);
 
-          DB:table('fases')->insert([
+          DB::table('fases')->insert([
             'fase' => 'Resultados'
         ]);
     }

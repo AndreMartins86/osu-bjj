@@ -13,10 +13,10 @@ class FaixaSeeder extends Seeder
      */
     public function run(): void
     {
-        DB:table('faixas')->insert([
+        DB::table('faixas')->insert([
                 'faixa' => 'Marrom'                
             ]);
-        DB:table('faixas')->insert([
+        DB::table('faixas')->insert([
                 'faixa' => 'Preta'
             ]);
     }

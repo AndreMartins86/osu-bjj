@@ -18,5 +18,15 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        $this->call([
+            GeneroSeeder::class,
+            TipoSeeder::class,
+            PesoSeeder::class,
+            FaseSeeder::class,
+            FaixaSeeder::class,
+            EstadoSeeder::class,
+            AtletaSeeder::class,
+            CampeonatoSeeder::class
+        ]);
     }
 }

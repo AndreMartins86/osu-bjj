@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Campeonato;
 
 class CampeonatoSeeder extends Seeder
 {
@@ -17,7 +18,7 @@ class CampeonatoSeeder extends Seeder
             'Campeonato Regional Santista 2023',
             'Torneio Estadual Infantil 2024',
             'Jiu-Jitsu Masters 2023',
-            'Liga Jiu-Jitsu de Pindamonhangaba'
+            'Liga Jiu-Jitsu de Pindamonhangaba',
             'Torneio de Jiu-Jitsu Praia Grande 2023',
             'Torneio Federação Paulista de Jiu-Jitsu 2023',            
             'MMA Masters 2023',
@@ -44,7 +45,7 @@ class CampeonatoSeeder extends Seeder
                 'local' => 'Ginásio Municipal',
                 'informacoes' => fake()->text(),
                 'entradaPublico' => fake()->text(),                
-                'tipo_id' => $tipo,
+                'tipo_id' => rand (1, 2),
                 'fase_id' => rand (1, 3),
                 'ativo' => '1',
         ]);

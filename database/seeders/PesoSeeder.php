@@ -13,10 +13,10 @@ class PesoSeeder extends Seeder
      */
     public function run(): void
     {
-        DB:table('pesos')->insert([
+        DB::table('pesos')->insert([
                 'peso' => 'Leve'                
             ]);
-        DB:table('pesos')->insert([
+        DB::table('pesos')->insert([
                 'peso' => 'Pesado'
             ]);
     }

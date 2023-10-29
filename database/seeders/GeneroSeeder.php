@@ -13,12 +13,12 @@ class GeneroSeeder extends Seeder
      */
     public function run(): void
     {
-         DB:table('generos')->insert([
+         DB::table('generos')->insert([
                 'genero' => 'Feminino',
                 'abbr' => 'F'
             ]);
 
-         DB:table('generos')->insert([
+         DB::table('generos')->insert([
                 'genero' => 'Masculino',
                 'abbr' => 'M'
             ]);

@@ -45,9 +45,9 @@ class EstadoSeeder extends Seeder
 
         foreach ($ufs as $sigla => $estado) {
 
-            DB:table('estados')->insert([
+            DB::table('estados')->insert([
                 'sigla' => $sigla,
-                'estado' => $estado
+                'nome' => $estado
             ]);
         } 
     }
