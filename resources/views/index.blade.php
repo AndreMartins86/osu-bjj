@@ -57,7 +57,7 @@
               </li>
               <li>
                 <a
-                  href="./area_atleta/area_restrita.html"
+                  href="{{ route('atleta') }}"
                   class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center"
                 >
                   Área do competidor
@@ -101,7 +101,7 @@
 
 
 
-
+          <h2>arrumar os destaques</h2>
 
           @foreach($campeonatos as $campeonato)
 
@@ -189,7 +189,7 @@
               </p>
             </div>
             <a
-              href="./integra.html"
+              href="{{ route('integra', $campeonato ) }}"
               {{-- title="Saiba mais sobre Campeonato regional santista 2023" --}}
               title="Saiba mais sobre {{ $campeonato->titulo }}"
               class="absolute inset-0"
