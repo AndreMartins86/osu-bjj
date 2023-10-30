@@ -294,16 +294,6 @@
         </article>
 
         @endforeach
-
-
-
-
-
-
-
-
-
-
        
        <center>{{ $campeonatos->links() }}</center>
        
