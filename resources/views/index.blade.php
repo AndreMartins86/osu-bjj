@@ -8,7 +8,7 @@
         <div
           class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
         >
-          <a href="/" class="flex items-center">
+          <a href="{{ route('home') }}" class="flex items-center">
             <img src="{{ url('img/logo.svg') }}" alt="Logo" />
             <p id="logo">OSU BJJ</p>
           </a>
@@ -42,7 +42,7 @@
             >
               <li>
                 <a
-                  href="/"
+                  href="{{ route('home') }}"
                   class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0"
                   aria-current="page"
                   >Início</a
@@ -118,13 +118,27 @@
               <div
                 class="absolute -top-14 bg-white px-4 py-2 rounded-md shadow-md shadow-gray-500 text-center"
               >
-                <p class="text-2xl font-bold" data-calendar>21</p>
-                <p>NOV</p>
+              @php
+              setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+              date_default_timezone_set('America/Sao_Paulo');
+              @endphp
+                <p class="text-2xl font-bold" data-calendar>{{  date('d',strtotime($campeonato->dataCampeonato))  }}</p>
+                <p>{{ strftime("%b", strtotime($campeonato->dataCampeonato)) }}</p>
               </div>
+
+              @if($campeonato->fase_id == 1)
+              <p
+               class="absolute -top-3 left-24 bg-green-600 px-3 text-white rounded-xl">        
+            @elseif($campeonato->fase_id == 2)
               <p
                 class="absolute -top-3 left-24 bg-yellow-600 px-3 text-white rounded-xl"
               >
-                {{ $campeonato->fase_id}}
+            @else
+             <p
+                class="absolute -top-3 left-24 bg-blue-700 px-3 text-white rounded-xl"
+              >
+            @endif
+                {{ $campeonato->getFase() }}
               </p>
               <h3 class="mt-4 uppercase text-xl min-h-[60px]">
                 {{ $campeonato->titulo }}
@@ -149,7 +163,7 @@
                     d="M6 6h.008v.008H6V6z"
                   />
                 </svg>
-                {{ $campeonato->tipo_id }}
+                {{ $campeonato->getTipo() }}
               </p>
               <p class="text-gray-400 flex gap-2 my-2">
                 <svg
@@ -171,7 +185,7 @@
                     d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
                   />
                 </svg>
-                {{ $campeonato->cidade }}
+                {{ $campeonato->cidade .'-'.$campeonato->getEstadoSigla()  }}
               </p>
             </div>
             <a

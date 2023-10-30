@@ -14,4 +14,6 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', [HomeController::class, 'home']);
+Route::get('/', [HomeController::class, 'home'])->name('home');
+
+Route::get('/torneios', [HomeController::class, 'torneios'])->name('torneios');
