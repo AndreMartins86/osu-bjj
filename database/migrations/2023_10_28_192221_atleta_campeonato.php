@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('atleta_campeonato', function (Blueprint $table){
-            $table->id();
+        Schema::create('atleta_campeonato', function (Blueprint $table){     
             $table->foreignId('atleta_id')->constrained();
             $table->foreignId('campeonato_id')->constrained();
-            $table->date('dataDaInscricao');
+            $table->timestamp('dataDaInscricao');
             
         });
     }   

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Atleta extends Model
 {
@@ -21,4 +22,11 @@ class Atleta extends Model
     protected $hidden = [
         'password',        
     ];
+
+    
+
+    public function campeonatos(): BelongsToMany
+    {
+        return $this->belongsToMany(Campeonato::class);
+    }
 }

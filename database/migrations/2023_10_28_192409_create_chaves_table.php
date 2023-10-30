@@ -16,11 +16,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('chaves', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('campeonato_id')->constrained();
+            $table->string('lutador_1')->nullable();
+            $table->string('lutador_2')->nullable();            
             $table->foreignId('genero_id')->constrained();
             $table->foreignId('faixa_id')->constrained();
-            $table->foreignId('peso_id')->constrained();
-            $table->foreignId('atleta_id')->constrained();
+            $table->foreignId('peso_id')->constrained();            
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\DB;
 
 class Campeonato extends Model
@@ -25,6 +26,13 @@ class Campeonato extends Model
         'fase_id',
         'ativo'       
     ];
+
+   public function atletas(): BelongsToMany
+    {
+        return $this->belongsToMany(Atleta::class);
+    }
+
+
 
     public function getFase(){
 
