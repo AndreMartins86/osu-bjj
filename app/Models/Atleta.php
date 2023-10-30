@@ -10,17 +10,7 @@ class Atleta extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'nome',
-        'email',
-        'password',
-        'dataDeNascimento',
-        'cpf',
-        'equipe',
-        'genero_id',
-        'peso_id',
-        'faixa_id'        
-    ];
+    protected $guarded = [];
   
     protected $hidden = [
         'password',        

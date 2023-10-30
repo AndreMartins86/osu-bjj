@@ -10,14 +10,7 @@ class Chave extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'campeonato_id',
-        'lutador_1',
-        'lutador_2',
-        'genero_id',
-        'faixa_id',
-        'peso_id'
-    ];
+    protected $guarded = [];
 
 
     public function campeonatos(): BelongsTo

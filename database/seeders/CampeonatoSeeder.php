@@ -35,7 +35,7 @@ class CampeonatoSeeder extends Seeder
             'img/torneio-card.jpg',
             'img/torneio1.jpeg',
             'img/torneio2.jpg',
-            'img/mk.jpeg',
+            'img/mk.jpeg'
         ];
 
         $j = count($titulos);
@@ -50,7 +50,7 @@ class CampeonatoSeeder extends Seeder
             //// Inscriçoes Abertas
             /////////////////////////////////////////////////////////////////
 
-            if ($i < 5) {
+            if ($i <= 8) {
                 Campeonato::create([
                 'titulo' => $titulos[$i],
                 'imagem' => $imagem[$cont],
@@ -72,7 +72,7 @@ class CampeonatoSeeder extends Seeder
         //// Chaves
         /////////////////////////////////////////////////////////////////
 
-            if ($i > 5 && $i <= 11) {
+            if ($i > 8 && $i <= 11) {
                 Campeonato::create([
                 'titulo' => $titulos[$i],
                 'imagem' => $imagem[$cont],

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('campeonato_id')->constrained();
             $table->string('lutador_1')->nullable();
             $table->string('lutador_2')->nullable();            
+            $table->string('vencedor')->nullable();
             $table->foreignId('genero_id')->constrained();
             $table->foreignId('faixa_id')->constrained();
             $table->foreignId('peso_id')->constrained();            

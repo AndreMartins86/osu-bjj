@@ -11,15 +11,7 @@ class Resultado extends Model
 
     // campeonato_id faixa_id peso_id primeiroColocado segundoColocado terceiroColocado created_at  updated_at  
 
-    protected $fillable = [
-        'campeonato_id',
-        'faixa_id',
-        'genero_id',
-        'peso_id',
-        'primeiroColocado',
-        'segundoColocado',
-        'terceiroColocado'
-    ];
+    protected $guarded = [];
 
 
 
