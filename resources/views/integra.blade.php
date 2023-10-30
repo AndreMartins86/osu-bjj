@@ -223,6 +223,10 @@
           {{ $campeonato->entradaPublico }}
         </div>
       </article>
+      
+
+      @if($campeonato->fase_id == 1)
+
       <div class="mt-8 flex justify-center">
         <a
           href="./inscricao.html"
@@ -231,6 +235,9 @@
           Inscreva-se agora mesmo
         </a>
       </div>
+
+      @elseif($campeonato->fase_id == 2)
+
       <div class="mt-8 flex justify-center">
         <a
           href="./chave_listagem.html"
@@ -239,6 +246,9 @@
           Fique por dentro do chaveamento
         </a>
       </div>
+
+      @else
+
       <div class="mt-8 flex justify-center">
         <a
           href="./resultados.html"
@@ -247,6 +257,9 @@
           Veja os resultados
         </a>
       </div>
+
+      @endif
+
     </main>
     <footer
       class="bg-white rounded-lg shadow max-w-7xl m-4 md:mx-auto md:mt-4 outline outline-1 outline-gray-300"
