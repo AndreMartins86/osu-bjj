@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\DB;
 
 class Campeonato extends Model
@@ -32,6 +33,10 @@ class Campeonato extends Model
         return $this->belongsToMany(Atleta::class);
     }
 
+    public function chaves(): HasMany
+    {
+        return $this->hasMany(Chave::class);
+    }
 
 
     public function getFase(){
@@ -153,7 +158,4 @@ class Campeonato extends Model
           return '##';
       }
     }
-
-
-    // titulo  imagem  cidade  estado_id   dataCampeonato  sobre   local   informacoes entradaPublico  genero_id   tipo_id fase_id ativo   created_at  updated_at
 }

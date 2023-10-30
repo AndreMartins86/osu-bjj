@@ -16,14 +16,17 @@ class Atleta extends Model
         'password',
         'dataDeNascimento',
         'cpf',
-        'equipe'
+        'equipe',
+        'genero_id',
+        'peso_id',
+        'faixa_id'        
     ];
   
     protected $hidden = [
         'password',        
     ];
 
-    
+
 
     public function campeonatos(): BelongsToMany
     {

@@ -14,10 +14,13 @@ class Resultado extends Model
     protected $fillable = [
         'campeonato_id',
         'faixa_id',
+        'genero_id',
         'peso_id',
         'primeiroColocado',
         'segundoColocado',
         'terceiroColocado'
     ];
+
+
 
 }
