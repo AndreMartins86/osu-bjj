@@ -3,13 +3,13 @@
 @section('title', 'Campeonato de Jiu Jitsu')
 
 @section('conteudo')
-    <header>
+  <header>
       <nav class="bg-white border-gray-200">
         <div
           class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
         >
-          <a href="/" class="flex items-center">
-            <img src="imgs/logo.svg" alt="Logo" />
+          <a href="{{ route('home') }}" class="flex items-center">
+            <img src="{{ url('img/logo.svg') }}" alt="Logo" />
             <p id="logo">OSU BJJ</p>
           </a>
           <button
@@ -42,14 +42,14 @@
             >
               <li>
                 <a
-                  href="#"
+                  href="{{ route('home') }}"
                   class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
                   >Início</a
                 >
               </li>
               <li>
                 <a
-                  href="#"
+                  href="{{ route('torneios') }}"
                   class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0"
                   aria-current="page"
                   >Torneios</a
@@ -57,7 +57,7 @@
               </li>
               <li>
                 <a
-                  href="./area_atleta/area_restrita.html"
+                  href="{{ route('atleta') }}"
                   class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center"
                 >
                   Área do competidor
@@ -74,18 +74,22 @@
       x-data="{active:'sobre_evento'}"
     >
       <img
-        src="imgs/integra.jpg"
+        src="{{ url($campeonato->imagem )}}"
         alt="Imagem do torneio"
         class="rounded-md h-[500px] w-full object-cover"
       />
-      <time datetime="2023-11-21" class="block mt-4 text-gray-500"
-        >Terça-feira, 21 de novembro</time
+      @php
+        setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+        date_default_timezone_set('America/Sao_Paulo');
+      @endphp
+      <time datetime="{{ $campeonato->dataCampeonato }}" class="block mt-4 text-gray-500"
+        >{{ strftime('%A, %d de %B', strtotime($campeonato->dataCampeonato))  }}</time
       >
       <h1
         class="my-1 font-bold text-5xl text-blue-800 flex flex-col lg:flex-row lg:items-center gap-2"
       >
-        Campeonato Regional Santista 2023
-        <span class="text-gray-500 font-normal text-3xl">#241223</span>
+        {{ $campeonato->titulo }}
+        <span class="text-gray-500 font-normal text-3xl">#{{ $campeonato->id }}</span>
       </h1>
       <div class="flex gap-2">
         <p class="text-gray-500 flex gap-2 my-2">
@@ -108,7 +112,7 @@
               d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
             />
           </svg>
-          Santos-SP
+          {{ $campeonato->cidade .'-'.$campeonato->getEstadoSigla()  }}
         </p>
         <p class="text-gray-500 flex gap-2 my-2">
           <svg
@@ -130,7 +134,7 @@
               d="M6 6h.008v.008H6V6z"
             />
           </svg>
-          Kimono
+          {{ $campeonato->getTipo() }}
         </p>
       </div>
       <ul
@@ -189,11 +193,7 @@
         x-show="active=='sobre_evento'"
       >
         <div class="mt-4 text-lg">
-          O evento contará com a presença do Mestre Royce Gracie, um dos maiores
-          nomes do Jiu-Jitsu mundial. Royce será um dos avaliadores da
-          competição e participará de uma mesa redonda com atletas e técnicos. O
-          evento é uma ótima oportunidade para os atletas de Santos e região
-          mostrarem seu talento e competirem com outros atletas de alto nível.
+          {{ $campeonato->sobre }}
         </div>
       </article>
       <article
@@ -202,13 +202,7 @@
         x-show="active=='ginasio'"
       >
         <div class="mt-4 text-lg">
-          A Arena Santos é um ginásio poliesportivo localizado na cidade de
-          Santos, no estado de São Paulo. É o maior ginásio do município, com
-          capacidade para 5.000 pessoas. O ginásio foi inaugurado em 2010 e é
-          utilizado para a realização de eventos esportivos, culturais e
-          sociais. Já recebeu competições de futsal, vôlei, basquete, handebol,
-          judô, taekwondo, capoeira, entre outros. Também já foi palco de shows,
-          feiras e eventos corporativos.
+          {{ $campeonato->local }}
         </div>
       </article>
       <article
@@ -217,14 +211,7 @@
         x-show="active=='infos_gerais'"
       >
         <div class="mt-4 text-lg">
-          Além de Royce Gracie, o evento santista contará com a presença de
-          outros grandes nomes do Jiu Jitsu, como André Galvão, Rodolfo Vieira e
-          Leandro Lo. O evento também terá uma programação cultural, com shows
-          de música e dança. O evento é uma grande oportunidade para os atletas
-          de Santos e região mostrarem seu talento para o Jiu Jitsu. É também
-          uma oportunidade para os fãs da modalidade assistirem a grandes lutas
-          e conhecerem os ídolos do Jiu Jitsu. A expectativa é que o evento seja
-          um sucesso de público e crítica.
+          {{ $campeonato->informacoes }}
         </div>
       </article>
       <article
@@ -233,29 +220,7 @@
         x-show="active=='entrada_publico'"
       >
         <div class="mt-4 text-lg">
-          <p>
-            R$ 10,00 entrada com Doacao de 1 kg de alimento ( sem ser perecível
-            , açúcar e sal ), ou pacote de ração animal.
-          </p>
-
-          <p>R$ 20,00 entrada sem doação.</p>
-
-          <em>
-            *proibido levar animal de estimação ( cachorro , gato e outros ).
-            Norma do Arena Santos.
-          </em>
-
-          <p>Isentos:</p>
-          <ul>
-            <li>
-              - Professor faixa preta de atleta inscrito é isento ( mostrando a
-              carteira na entrada , de qualquer entidade oficial).
-            </li>
-            <li>- 1 Acompanhante de menor de 14 anos é isento.</li>
-            <li>- Atleta participante é isento.</li>
-          </ul>
-
-          Os ingressos são vendidos no dia e local do evento.
+          {{ $campeonato->entradaPublico }}
         </div>
       </article>
       <div class="mt-8 flex justify-center">
@@ -319,4 +284,6 @@
         </ul>
       </div>
     </footer>
+
+
 @endsection

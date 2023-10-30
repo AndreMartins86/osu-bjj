@@ -24,12 +24,17 @@ class HomeController extends Controller
          $campeonatos = Campeonato::where('ativo','=','1')
          ->latest('dataCampeonato')
          ->paginate(8);
-         
+
         return view('torneios', compact('campeonatos'));
     }
 
      public function atleta() : View
     {
         return view('area_atleta.area_restrita');
+    }
+
+    public function integra(Campeonato $campeonato) : View
+    {
+        return view('integra', compact('campeonato'));
     }
 }

@@ -216,7 +216,7 @@
             <div
               class="absolute -top-14 bg-white px-4 py-2 rounded-md shadow-md shadow-gray-500 text-center"
             >
-               @php
+              @php
               setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
               date_default_timezone_set('America/Sao_Paulo');
               @endphp
@@ -287,7 +287,7 @@
             </p>
           </div>
           <a
-            href="./integra.html"
+            href="{{ route('integra', $camp )}}"
             title="Saiba mais sobre {{ $camp->titulo }}"
             class="absolute inset-0"
           ></a>
@@ -295,6 +295,7 @@
 
         @endforeach
        
+       <br><br>
        <center>{{ $campeonatos->links() }}</center>
        
       </div>
