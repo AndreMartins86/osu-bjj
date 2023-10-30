@@ -25,13 +25,17 @@ class CampeonatoSeeder extends Seeder
             'Rio vs São Paulo MMA III',
             'Death Cage 2023',
             'Mortal Kombat II',
-            'Maia Championship Nacional 2023'
+            'Maia Championship Nacional 2023',
+            'Torneio Federação Carioca de Jiu-Jitsu 2023',
+            'Fists of Fury',
+            'Torneio Federação Mineira de Jiu-Jitsu',
         ];
 
         $imagem = [
             'img/torneio-card.jpg',
             'img/torneio1.jpeg',
-            'img/torneio2.jpg'
+            'img/torneio2.jpg',
+            'img/mk.jpeg',
         ];
 
         $j = count($titulos);
@@ -42,7 +46,12 @@ class CampeonatoSeeder extends Seeder
             // titulo  imagem  cidade  estado_id   dataCampeonato  sobre   local   informacoes entradaPublico  genero_id   tipo_id fase_id ativo   created_at  updated_at
 
         for ($i=0; $i < $j ; $i++) { 
-             Campeonato::create([
+            //////////////////////////////////////////////////////////////////
+            //// Inscriçoes Abertas
+            /////////////////////////////////////////////////////////////////
+
+            if ($i < 5) {
+                Campeonato::create([
                 'titulo' => $titulos[$i],
                 'imagem' => $imagem[$cont],
                 'cidade' => $cidade,
@@ -53,15 +62,63 @@ class CampeonatoSeeder extends Seeder
                 'informacoes' => fake()->text(),
                 'entradaPublico' => fake()->text(),                
                 'tipo_id' => rand (1, 2),
-                'fase_id' => rand (1, 3),
+                'fase_id' => 1,
                 'ativo' => '1',
         ]);
+                
+            }
 
-             $tipo = ($i < 5) ? 'Kimono' : 'No-Gi';
-             $cidade = ($i < 5) ? 'Praia Grande' : 'Santos';
+        //////////////////////////////////////////////////////////////////
+        //// Chaves
+        /////////////////////////////////////////////////////////////////
+
+            if ($i > 5 && $i <= 11) {
+                Campeonato::create([
+                'titulo' => $titulos[$i],
+                'imagem' => $imagem[$cont],
+                'cidade' => $cidade,
+                'estado_id' => '25',
+                'dataCampeonato' => fake()->dateTimeBetween('-2 years', 'now'),
+                'sobre' => fake()->text(),
+                'local' => 'Ginásio Municipal',
+                'informacoes' => fake()->text(),
+                'entradaPublico' => fake()->text(),                
+                'tipo_id' => rand (1, 2),
+                'fase_id' => 2,
+                'ativo' => '1',
+        ]);
+                
+            }
+
+        //////////////////////////////////////////////////////////////////
+        //// Resultados
+        /////////////////////////////////////////////////////////////////
+
+            if ($i > 11) {
+                Campeonato::create([
+                'titulo' => $titulos[$i],
+                'imagem' => $imagem[$cont],
+                'cidade' => $cidade,
+                'estado_id' => '25',
+                'dataCampeonato' => fake()->dateTimeBetween('-2 years', 'now'),
+                'sobre' => fake()->text(),
+                'local' => 'Ginásio Municipal',
+                'informacoes' => fake()->text(),
+                'entradaPublico' => fake()->text(),                
+                'tipo_id' => rand (1, 2),
+                'fase_id' => 3,
+                'ativo' => '0',
+        ]);
+
+
+            }
+            
+             $tipo = ($i < 7) ? 'Kimono' : 'No-Gi';
+             $cidade = ($i < 7) ? 'Praia Grande' : 'Santos';
+
 
              $cont++;
-             if ($cont > 2) {
+             if ($cont > 3) {
                  $cont = 0;
              }
             
