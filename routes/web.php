@@ -17,3 +17,5 @@ use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::get('/torneios', [HomeController::class, 'torneios'])->name('torneios');
+
+Route::get('/area_atleta', [HomeController::class, 'atleta'])->name('atleta');

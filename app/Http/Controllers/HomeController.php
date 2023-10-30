@@ -21,6 +21,15 @@ class HomeController extends Controller
 
     public function torneios() : View
     {
-        return view('torneios');
+         $campeonatos = Campeonato::where('ativo','=','1')
+         ->latest('dataCampeonato')
+         ->paginate(8);
+         
+        return view('torneios', compact('campeonatos'));
+    }
+
+     public function atleta() : View
+    {
+        return view('area_atleta.area_restrita');
     }
 }
