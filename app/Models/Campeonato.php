@@ -12,7 +12,7 @@ class Campeonato extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $guarded = [];  
 
    public function atletas(): BelongsToMany
     {
@@ -24,9 +24,14 @@ class Campeonato extends Model
         return $this->hasMany(Chave::class);
     }
 
+    public function friendUrl()
+    {
+      return str_replace(' ', '-', $this->titulo);
+    }
 
-    public function getFase(){
 
+    public function getFase()
+    {
         $fases = DB::table('fases')->get();
         //dd($fases);
 
@@ -43,7 +48,8 @@ class Campeonato extends Model
         }        
     }
 
-    public function getTipo(){
+    public function getTipo()
+    {
 
         $tipos = DB::table('tipos')->get();
         //dd($fases);
@@ -57,7 +63,8 @@ class Campeonato extends Model
         }          
     }
 
-    public function getEstadoSigla(){
+    public function getEstadoSigla()
+    {
         
         $estados = DB::table('estados')->get();
 

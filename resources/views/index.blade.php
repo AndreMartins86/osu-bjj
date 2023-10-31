@@ -189,7 +189,7 @@
               </p>
             </div>
             <a
-              href="{{ route('integra', $campeonato ) }}"
+              href="{{ route('integra', ['campeonato' => $campeonato, 'slug' => $campeonato->friendUrl()]) }}"
               {{-- title="Saiba mais sobre Campeonato regional santista 2023" --}}
               title="Saiba mais sobre {{ $campeonato->titulo }}"
               class="absolute inset-0"
