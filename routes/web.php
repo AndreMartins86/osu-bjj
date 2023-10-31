@@ -18,6 +18,8 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::get('/torneios', [HomeController::class, 'torneios'])->name('torneios');
 
+Route::post('/busca', [HomeController::class, 'buscar'])->name('buscar');
+
 Route::get('/area_atleta', [HomeController::class, 'atleta'])->name('atleta');
 
 Route::get('/integra/{campeonato}', [HomeController::class, 'integra'])->name('integra');
