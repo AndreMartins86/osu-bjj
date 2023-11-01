@@ -1,20 +1,11 @@
-<!DOCTYPE html>
-<html lang="pt-br" class="h-100">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KBRTEC ADMIN</title>
+@extends('painel.appadmin')
 
-    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link href="css/style.css" rel="stylesheet">
-</head>
-<body class="bg-dark h-100">
+@section('conteudo')
     <header class="bg-light py-2 shadow">
         <div class="container-fluid">
             <div class="row">
                 <div style="width: 250px;">
-                    <img src="img/kbrtec.webp" alt="KBRTEC" height="60" width="150" class="object-fit-contain">
+                    <img src="{{ url('painel/img/kbrtec.webp') }}" alt="KBRTEC" height="60" width="150" class="object-fit-contain">
                 </div>
 
                 <div class="col dropdown d-flex align-items-center justify-content-end">
@@ -87,26 +78,28 @@
                 <a href="painel.html" class="btn btn-light">Voltar</a>
             </div>
 
-            <form action="" class="bg-custom rounded col-12 py-3 px-4">
+            <form action="{{ route('adm_painel.update', $user) }}" method="POST" class="bg-custom rounded col-12 py-3 px-4">
+                @csrf
+                @method('PUT')
                 
                 <div class="mb-3 row">
                     <label for="usuario" class="col-sm-2 col-form-label">Usuário:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control bg-dark text-light border-dark" id="usuario" placeholder="Ex: Admin" value="Admin">
+                        <input type="text" class="form-control bg-dark text-light border-dark" id="usuario" name="nome" value="{{ $user->nome }}" placeholder="Ex: Admin" value="Admin">
                     </div>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="email" class="col-sm-2 col-form-label">E-mail:</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control bg-dark text-light border-dark" id="email" placeholder="Ex: admin@kbrtec.com.br" value="admin@kbrtec.com.br">
+                        <input type="email" class="form-control bg-dark text-light border-dark" id="email" name="email" value="{{ $user->email }}" placeholder="Ex: admin@kbrtec.com.br" value="admin@kbrtec.com.br">
                     </div>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="senha" class="col-sm-2 col-form-label">Senha:</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control bg-dark text-light border-dark" id="senha">
+                        <input type="password" name="password" class="form-control bg-dark text-light border-dark" id="senha">
                     </div>
                 </div>
 
@@ -124,7 +117,4 @@
     <footer class="bg-custom text-light text-center py-4">
         <small>© Copyright 2023 - KBR TEC - Todos os Direitos Reservados</small>
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-</body>
-</html>
+@endsection
