@@ -71,7 +71,7 @@
             </div>
         </aside>
 
-        @if ($errors->any())
+    {{--     @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
                    @foreach ($errors->all() as $error)
@@ -79,7 +79,7 @@
                    @endforeach
                  </ul>
             </div>
-        @endif
+        @endif --}}
 
 
         <main class="col h-100 text-light p-4">
@@ -129,3 +129,21 @@
         <small>© Copyright 2023 - KBR TEC - Todos os Direitos Reservados</small>
     </footer>
 @endsection
+
+<script type="text/javascript">
+    
+      @if ($errors->any())
+            let erros = '';     
+            @foreach ($errors->all() as $error)
+                erros += "{{ $error }}" + '\n';
+            @endforeach
+            alert(erros);
+      @endif
+
+      @if (session('msg'))
+      alert({{ session('msg') }});
+      @endif
+
+      
+
+</script>

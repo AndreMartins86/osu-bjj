@@ -37,6 +37,8 @@ class PainelController extends Controller
         //dd($request);   
         User::create($request->validated());
 
+        session()->flash('msg', 'Usuário Cadastrado.');
+
         return redirect()->route('adm_painel.index');
         
     }
@@ -44,9 +46,16 @@ class PainelController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $adm_painel)
     {
-        //
+        $usuario = User::find($adm_painel);
+
+        $nome = $usuario->nome;
+        $email = $usuario->email;
+        $cargo = $usuario->role;
+        $data_criacao = $usuario->created_at;
+
+        return response()->json(compact('nome', 'email', 'cargo', 'data_criacao'));
     }
 
     /**
@@ -74,6 +83,8 @@ class PainelController extends Controller
 
        $adm_painel->update();
 
+       session()->flash('msg', 'Usuário Atualizado.');
+
        return redirect()->route('adm_painel.index');
    }
 
@@ -83,6 +94,8 @@ class PainelController extends Controller
     public function destroy(User $adm_painel) : RedirectResponse
     {
         $adm_painel->delete();
+
+        session()->flash('msg', 'Usuário Deletado.');
 
         return redirect()->route('adm_painel.index');
     }

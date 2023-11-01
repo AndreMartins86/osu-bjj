@@ -64,6 +64,42 @@
                     </div>
                 </div>
 
+
+                <div class="item">
+                    <div class="w-100 d-flex align-items-center gap-2 link-light text-decoration-none mt-2 py-3 px-3 border-start border-light border-4" type="button" data-bs-toggle="collapse" data-bs-target="#menu-campeonato" aria-expanded="true" aria-controls="menu-usuario">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                        </svg>
+    
+                        Campeonatos
+                    </div>
+
+                    <div class="collapse show" id="menu-campeonato">
+                        <div class="bg-dark d-flex flex-column rounded mx-4 p-2 row-gap-1">
+                            <a href="{{ route('adm_painel.create') }}" class="submenu-link link-light text-decoration-none rounded p-2">
+                                <small class="d-flex justify-content-between align-items-center">
+                                    Cadastrar
+                                </small>
+                            </a>
+                            <a href="{{ route('adm_painel.index') }}" class="submenu-link link-light text-decoration-none rounded p-2 active">
+                                <small class="d-flex justify-content-between align-items-center">
+                                    Listagem
+    
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                </small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
                 <a href="login.html" class="w-100 d-flex align-items-center gap-2 link-light text-decoration-none mt-2 py-3 px-3 ms-1 icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(-.125rem, 0, 0);">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
@@ -142,7 +178,7 @@
 
 
             <div class="bg-custom rounded overflow-hidden">
-                <table class="table mb-0 table-custom table-dark align-middle">
+                <table class="table mb-0 table-custom table-dark align-middle" id="table">
                     <thead>
                         <tr>
                             <th scope="col" class="text-uppercase">Usuário</th>
@@ -158,7 +194,7 @@
                             <td>{{ $user->email }}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <button type="button" class="btn btn-light d-flex justify-content-center align-items-center rounded-circle p-2 mx-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <button type="button" id="{{ $user->id }}" class="btn btn-light d-flex justify-content-center align-items-center rounded-circle p-2 mx-2" data-bs-toggle="modal" data-bs-target="modalShow" onclick="getButton(this.id)">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                                         </svg>
@@ -169,13 +205,20 @@
                                             <path fill="#141618" d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
                                         </svg>
                                     </a>
-
-                                    <a href="{{ route('adm_painel.destroy', $user) }}" class="btn btn-danger d-flex justify-content-center align-items-center rounded-circle p-2 mx-2" title="Deletar">
+                                    <form action="{{ route('adm_painel.destroy', $user) }}" method="POST" accept-charset="utf-8">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger d-flex justify-content-center align-items-center rounded-circle p-2 mx-2">
+                                    {{-- <a href="" class="btn btn-danger d-flex justify-content-center align-items-center rounded-circle p-2 mx-2" title="Deletar"> --}}
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                             <path fill="#FFF" d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
                                             <path fill="#FFF" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
                                         </svg>
-                                    </a>
+                                    {{-- </a> --}}
+                                    </button>                               
+                                    </form>
+
+                                    
                                 </div>
                             </td>
                         </tr>
@@ -254,7 +297,7 @@
         <small>© Copyright 2023 - KBR TEC - Todos os Direitos Reservados</small>
     </footer>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalShow" tabindex="-1" aria-labelledby="modalShow" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered text-light">
             <div class="modal-content bg-custom">
                 <div class="modal-header">
@@ -264,17 +307,17 @@
                 <div class="modal-body d-flex flex-wrap row-gap-4">
                     <div class="col-6">
                         <div><small>Usuário:</small></div>
-                        <div>Admin</div>
+                        <div id="nome">Admin</div>
                     </div>
 
                     <div class="col-6">
-                        <div><small>Status:</small></div>
-                        <div>Ativado</div>
+                        <div><small>Cargo:</small></div>
+                        <div id="cargo">Ativado</div>
                     </div>
 
                     <div class="col-12">
                         <div><small>E-mail:</small></div>
-                        <div>admin@kbrtec.com.br</div>
+                        <div id="email">admin@kbrtec.com.br</div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -284,3 +327,4 @@
         </div>
     </div>
 @endsection
+
