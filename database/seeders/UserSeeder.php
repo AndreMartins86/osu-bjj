@@ -14,26 +14,38 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'nome' => 'admin',
-            'email' => 'admin@kbrtec.com.br',
-            'password' => Hash::make(1234),
-            'role' => 'Admin',
-        ]);
 
-        User::create([
-            'nome' => 'user',
-            'email' => 'user@kbrtec.com.br',
-            'password' => Hash::make(1234),
-            'role' => 'User',
-        ]);
+        User::factory(20)->create();
 
-        User::create([
-            'nome' => 'teste',
-            'email' => 'usuario@kbrtec.com.br',
-            'password' => Hash::make(1234),
-            'role' => 'User',
-        ]);
+
+
+        // User::create([
+        //     'nome' => 'admin',
+        //     'email' => 'admin@kbrtec.com.br',
+        //     'password' => Hash::make(1234),
+        //     'role' => 'Admin',
+        // ]);
+
+        // User::create([
+        //     'nome' => 'user',
+        //     'email' => 'user@kbrtec.com.br',
+        //     'password' => Hash::make(1234),
+        //     'role' => 'User',
+        // ]);
+
+        // User::create([
+        //     'nome' => 'teste',
+        //     'email' => 'usuario@kbrtec.com.br',
+        //     'password' => Hash::make(1234),
+        //     'role' => 'User',
+        // ]);
+
+        //  User::create([
+        //     'nome' => 'André',
+        //     'email' => 'andre@emai.com',
+        //     'password' => Hash::make(1234),
+        //     'role' => 'Admin',
+        // ]);
 
 
 

@@ -1,4 +1,4 @@
-  @extends('app')
+@extends('app')
 
 @section('title', 'Campeonato de Jiu Jitsu')
 
