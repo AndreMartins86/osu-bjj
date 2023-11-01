@@ -46,12 +46,12 @@
 
                     <div class="collapse show" id="menu-usuario">
                         <div class="bg-dark d-flex flex-column rounded mx-4 p-2 row-gap-1">
-                            <a href="cadastrar.html" class="submenu-link link-light text-decoration-none rounded p-2">
+                            <a href="{{ route('adm_painel.create') }}" class="submenu-link link-light text-decoration-none rounded p-2">
                                 <small class="d-flex justify-content-between align-items-center">
                                     Cadastrar
                                 </small>
                             </a>
-                            <a href="painel.html" class="submenu-link link-light text-decoration-none rounded p-2">
+                            <a href="{{ route('adm_painel.index') }}" class="submenu-link link-light text-decoration-none rounded p-2">
                                 <small class="d-flex justify-content-between align-items-center">
                                     Listagem
                                 </small>
@@ -71,11 +71,22 @@
             </div>
         </aside>
 
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                   @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                   @endforeach
+                 </ul>
+            </div>
+        @endif
+
+
         <main class="col h-100 text-light p-4">
             <div class="d-flex align-items-end justify-content-between mb-4">
                 <h1 class="h3">Editar Usuário</h1>
 
-                <a href="painel.html" class="btn btn-light">Voltar</a>
+                <a href="{{ route('adm_painel.index') }}" class="btn btn-light">Voltar</a>
             </div>
 
             <form action="{{ route('adm_painel.update', $user) }}" method="POST" class="bg-custom rounded col-12 py-3 px-4">

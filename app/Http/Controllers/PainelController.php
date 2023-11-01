@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Requests\PainelRequest;
+use App\Http\Requests\PainelStoreRequest;
+use App\Http\Requests\PainelUpdateRequest;
 
 class PainelController extends Controller
 {
@@ -51,7 +52,7 @@ class PainelController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $adm_painel)
+    public function edit(User $adm_painel) : View
     {
         $user = $adm_painel;
         //dd($user);
@@ -62,16 +63,27 @@ class PainelController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PainelUpdateRequest $request, User $adm_painel) : RedirectResponse
     {
-        //
-    }
+
+        //auth()->user()->update($request->validated());
+
+       $validado = $request->validated();
+
+       $adm_painel->fill($validado);
+
+       $adm_painel->update();
+
+       return redirect()->route('adm_painel.index');
+   }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $adm_painel) : RedirectResponse
     {
-        //
+        $adm_painel->delete();
+
+        return redirect()->route('adm_painel.index');
     }
 }

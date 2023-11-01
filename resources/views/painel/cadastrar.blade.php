@@ -47,7 +47,7 @@
 
                 <div class="collapse show" id="menu-usuario">
                     <div class="bg-dark d-flex flex-column rounded mx-4 p-2 row-gap-1">
-                        <a href="cadastrar.html" class="submenu-link link-light text-decoration-none rounded p-2 active">
+                        <a href="{{ route('adm_painel.create') }}" class="submenu-link link-light text-decoration-none rounded p-2 active">
                             <small class="d-flex justify-content-between align-items-center">
                                 Cadastrar
 
@@ -116,7 +116,7 @@
 
             <div class="form-floating">
               <select class="form-select mb-2" id="role" name="role" aria-label="">
-                <option selected>Selecione cargo</option>
+                <option selected value="">Selecione cargo</option>
                 <option value="Admin">Admin</option>
                 <option value="User">Usuário</option>                
             </select>
@@ -139,3 +139,16 @@
 </footer>
 
 @endsection
+
+<script type="text/javascript">
+    
+      @if ($errors->any())
+            let erros = '';     
+            @foreach ($errors->all() as $error)
+                erros += "{{ $error }}" + '\n';
+            @endforeach    
+      @endif
+
+      alert(erros);    
+
+</script>
