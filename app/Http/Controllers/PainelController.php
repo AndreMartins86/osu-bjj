@@ -26,7 +26,7 @@ class PainelController extends Controller
      */
     public function create() : View
     {
-        return view('painel.cadastrar');
+        return view('painel.cadastrarUser');
     }
 
     /**
@@ -66,7 +66,7 @@ class PainelController extends Controller
         $user = $adm_painel;
         //dd($user);
 
-        return view('painel.editar',compact('user'));
+        return view('painel.editarUser',compact('user'));
     }
 
     /**

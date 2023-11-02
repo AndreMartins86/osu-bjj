@@ -46,7 +46,7 @@
 
                     <div class="collapse show" id="menu-usuario">
                         <div class="bg-dark d-flex flex-column rounded mx-4 p-2 row-gap-1">
-                            <a href="{{ route('adm_painel.create') }}" class="submenu-link link-light text-decoration-none rounded p-2">
+                            <a href="{{ route('adm_torneio.create') }}" class="submenu-link link-light text-decoration-none rounded p-2">
                                 <small class="d-flex justify-content-between align-items-center">
                                     Cadastrar
                                 </small>
@@ -60,11 +60,7 @@
                                     </svg>
                                 </small>
                             </a>
-                             <a href="#" class="submenu-link link-light text-decoration-none rounded p-2">
-                                <small class="d-flex justify-content-between align-items-center">
-                                    Destaques
-                                </small>
-                            </a>
+                             
                         </div>
                     </div>
                 </div>
@@ -95,6 +91,11 @@
                                     </svg>
                                 </small>
                             </a>
+                            <a href="#" class="submenu-link link-light text-decoration-none rounded p-2">
+                                <small class="d-flex justify-content-between align-items-center">
+                                    Destaques
+                                </small>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -118,7 +119,7 @@
 
         <main class="col h-100 text-light p-4">
             <div class="d-flex justify-content-between mb-4">
-                <h1 class="h3">Usuários</h1>
+                <h1 class="h3">Campeonatos</h1>
 
                 <div class="d-flex gap-2">
                     <a href="#" class="btn btn-light" title="PDF">
@@ -134,7 +135,7 @@
                         </svg>
                     </a>
 
-                    <a href="{{ route('adm_painel.create') }}" class="btn btn-light">+ Cadastrar Usuário</a>
+                    <a href="{{ route('adm_painel.create') }}" class="btn btn-light">+ Cadastrar Campeonato</a>
                 </div>
             </div>
 
@@ -193,24 +194,24 @@
                     </thead>
                     <tbody>
 
-                        @foreach($usuarios as $user)
+                        @foreach($campeonatos as $camp)
                         <tr>
-                            <td>{{ $user->nome }}</td>
-                            <td>{{ $user->email }}</td>
+                            <td>{{ $camp->titulo }}</td>
+                            <td>{{ $camp->dataCampeonato }}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <button type="button" id="{{ $user->id }}" class="btn btn-light d-flex justify-content-center align-items-center rounded-circle p-2 mx-2" data-bs-toggle="modal" data-bs-target="modalShow" onclick="getButton(this.id)">
+                                    <button type="button" id="{{-- $user->id --}}" class="btn btn-light d-flex justify-content-center align-items-center rounded-circle p-2 mx-2" data-bs-toggle="modal" data-bs-target="modalShow" onclick="{{-- getButton(this.id)--}}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                                         </svg>
                                     </button>
 
-                                    <a href="{{ route('adm_painel.edit', $user) }}" class="btn btn-light d-flex justify-content-center align-items-center rounded-circle p-2 mx-2" title="Editar">
+                                    <a href="{{ route('adm_painel.edit', $camp) }}" class="btn btn-light d-flex justify-content-center align-items-center rounded-circle p-2 mx-2" title="Editar">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
                                             <path fill="#141618" d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
                                         </svg>
                                     </a>
-                                    <form action="{{ route('adm_painel.destroy', $user) }}" method="POST" accept-charset="utf-8">
+                                    <form action="{{ route('adm_painel.destroy', $camp) }}" method="POST" accept-charset="utf-8">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger d-flex justify-content-center align-items-center rounded-circle p-2 mx-2">
@@ -283,7 +284,7 @@
                     </tbody>
                 </table>
             </div>
-            {{ $usuarios->links('pagination::bootstrap-5') }}
+            {{ $campeonatos->links('pagination::bootstrap-5') }}
             
 
            {{--  <nav aria-label="navigation">
