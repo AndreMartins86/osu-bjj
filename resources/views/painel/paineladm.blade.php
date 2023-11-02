@@ -60,6 +60,7 @@
                                     </svg>
                                 </small>
                             </a>
+
                         </div>
                     </div>
                 </div>
@@ -76,18 +77,23 @@
 
                     <div class="collapse show" id="menu-campeonato">
                         <div class="bg-dark d-flex flex-column rounded mx-4 p-2 row-gap-1">
-                            <a href="{{ route('adm_painel.create') }}" class="submenu-link link-light text-decoration-none rounded p-2">
+                            <a href="{{ route('adm_torneio.create') }}" class="submenu-link link-light text-decoration-none rounded p-2">
                                 <small class="d-flex justify-content-between align-items-center">
                                     Cadastrar
                                 </small>
                             </a>
-                            <a href="{{ route('adm_painel.index') }}" class="submenu-link link-light text-decoration-none rounded p-2 active">
+                            <a href="{{ route('adm_torneio.index') }}" class="submenu-link link-light text-decoration-none rounded p-2 active">
                                 <small class="d-flex justify-content-between align-items-center">
                                     Listagem
     
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
                                     </svg>
+                                </small>
+                            </a>
+                            <a href="#" class="submenu-link link-light text-decoration-none rounded p-2">
+                                <small class="d-flex justify-content-between align-items-center">
+                                    Destaques
                                 </small>
                             </a>
                         </div>

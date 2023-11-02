@@ -136,6 +136,6 @@
 
 <footer class="bg-custom text-light text-center py-4">
     <small>© Copyright 2023 - KBR TEC - Todos os Direitos Reservados</small>
-</footer>
+</footer>   
 @endsection
 

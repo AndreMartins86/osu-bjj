@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PainelController;
+use App\Http\Controllers\TorneioController;
 
 
 /*
@@ -27,3 +28,5 @@ Route::get('/area_atleta', [HomeController::class, 'atleta'])->name('atleta');
 Route::get('/integra/{campeonato}/{slug}', [HomeController::class, 'integra'])->name('integra');
 
 Route::resource('/adm_painel', PainelController::class);
+
+Route::resource('/adm_torneio', TorneioController::class);
