@@ -99,4 +99,38 @@ class PainelController extends Controller
 
         return redirect()->route('adm_painel.index');
     }
+
+    public function filtrarUsuario(Request $req) : View
+    {
+        //dd($req);
+        $nome = $req->nome;
+        $cargo = $req->cargo;   
+        $dataInicial = $req->dataInicial;    
+        $dataFinal = $req->dataFinal;
+
+        if ($dataInicial == null) {
+            $dataInicial = '1970-01-01';
+        }
+
+        if ($dataFinal == null) {
+            $dataFinal = date('Y-m-d');
+        }
+
+        if ($cargo == null) {
+            $usuarios = User::where('nome', 'LIKE', '%'.$nome.'%')
+            ->whereBetween('created_at', [$dataInicial, $dataFinal])
+            ->paginate(10);
+
+            return view('painel.paineladm', compact('usuarios'));
+            
+        } else {
+            $usuarios = User::where('nome', 'LIKE', '%'.$nome.'%')
+            ->whereBetween('created_at', [$dataInicial, $dataFinal])
+            ->where('role', $cargo)
+            ->paginate(10);
+
+            return view('painel.paineladm', compact('usuarios'));
+
+        }
+    }
 }

@@ -69,10 +69,6 @@
       alert("{{ session('msg') }}");
     @endif
 
-    let t = document.getElementById('table');    
-
-    if (t !== null){
-
       function getButton(id){
 
         let url = "{{ route('adm_painel.show', ":id") }}";
@@ -99,7 +95,7 @@
           }          
         });
       }
-    }
+    
 
   </script>
 

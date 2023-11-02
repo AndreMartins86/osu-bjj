@@ -29,4 +29,8 @@ Route::get('/integra/{campeonato}/{slug}', [HomeController::class, 'integra'])->
 
 Route::resource('/adm_painel', PainelController::class);
 
+Route::post('/filtrar', [PainelController::class, 'filtrarUsuario'])->name('filtrarUsuario');
+
 Route::resource('/adm_torneio', TorneioController::class);
+
+

@@ -80,7 +80,7 @@
         <div class="d-flex align-items-end justify-content-between mb-4">
             <h1 class="h3">Cadastrar Usuário</h1>
 
-            <a href="painel.html" class="btn btn-light">Voltar</a>
+            <a href="{{ route('adm_painel.index') }}" class="btn btn-light">Voltar</a>
         </div>
 
         <form action="{{ route('adm_painel.store') }}" method="POST" class="bg-custom rounded col-12 py-3 px-4">
