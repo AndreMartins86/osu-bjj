@@ -46,7 +46,7 @@
 
                     <div class="collapse show" id="menu-usuario">
                         <div class="bg-dark d-flex flex-column rounded mx-4 p-2 row-gap-1">
-                            <a href="{{ route('adm_torneio.create') }}" class="submenu-link link-light text-decoration-none rounded p-2">
+                            <a href="{{ route('adm_painel.create') }}" class="submenu-link link-light text-decoration-none rounded p-2">
                                 <small class="d-flex justify-content-between align-items-center">
                                     Cadastrar
                                 </small>
@@ -77,12 +77,12 @@
 
                     <div class="collapse show" id="menu-campeonato">
                         <div class="bg-dark d-flex flex-column rounded mx-4 p-2 row-gap-1">
-                            <a href="{{ route('adm_painel.create') }}" class="submenu-link link-light text-decoration-none rounded p-2">
+                            <a href="{{ route('adm_torneio.create') }}" class="submenu-link link-light text-decoration-none rounded p-2">
                                 <small class="d-flex justify-content-between align-items-center">
                                     Cadastrar
                                 </small>
                             </a>
-                            <a href="{{ route('adm_painel.index') }}" class="submenu-link link-light text-decoration-none rounded p-2 active">
+                            <a href="{{ route('adm_torneio.index') }}" class="submenu-link link-light text-decoration-none rounded p-2 active">
                                 <small class="d-flex justify-content-between align-items-center">
                                     Listagem
     
@@ -135,7 +135,7 @@
                         </svg>
                     </a>
 
-                    <a href="{{ route('adm_painel.create') }}" class="btn btn-light">+ Cadastrar Campeonato</a>
+                    <a href="{{ route('adm_torneio.create') }}" class="btn btn-light">+ Cadastrar Campeonato</a>
                 </div>
             </div>
 
@@ -188,19 +188,24 @@
                     <thead>
                         <tr>
                             <th scope="col" class="text-uppercase">Usuário</th>
-                            <th scope="col" class="text-uppercase">E-mail</th>
+                            <th scope="col" class="text-uppercase">Data</th>
                             <th scope="col" class="text-uppercase text-center">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
 
+
+
+
+
                         @foreach($campeonatos as $camp)
+                        
                         <tr>
                             <td>{{ $camp->titulo }}</td>
-                            <td>{{ $camp->dataCampeonato }}</td>
+                            <td>{{ $camp->dataFormatada() }}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <button type="button" id="{{-- $user->id --}}" class="btn btn-light d-flex justify-content-center align-items-center rounded-circle p-2 mx-2" data-bs-toggle="modal" data-bs-target="modalShow" onclick="{{-- getButton(this.id)--}}">
+                                    <button title="Mais detalhes" type="button" id="{{-- $user->id --}}" class="btn btn-light d-flex justify-content-center align-items-center rounded-circle p-2 mx-2" data-bs-toggle="modal" data-bs-target="modalShow" onclick="{{-- getButton(this.id)--}}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                                         </svg>
@@ -214,7 +219,7 @@
                                     <form action="{{ route('adm_painel.destroy', $camp) }}" method="POST" accept-charset="utf-8">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger d-flex justify-content-center align-items-center rounded-circle p-2 mx-2">
+                                    <button type="submit" class="btn btn-danger d-flex justify-content-center align-items-center rounded-circle p-2 mx-2" title="Apagar">
                                     {{-- <a href="" class="btn btn-danger d-flex justify-content-center align-items-center rounded-circle p-2 mx-2" title="Deletar"> --}}
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                             <path fill="#FFF" d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>

@@ -29,6 +29,16 @@ class Campeonato extends Model
       return str_replace(' ', '-', $this->titulo);
     }
 
+       public function dataFormatada()
+    {
+
+      //$dataFmt = new DateTimeImmutable($this->dataCampeonato);
+      $dataFmt = date_create($this->dataCampeonato);
+      
+
+      return $dataFmt->format('d/m/Y');;
+    }
+
 
     public function getFase()
     {

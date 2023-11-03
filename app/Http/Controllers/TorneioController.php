@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Campeonato;
+use App\Http\Requests\TorneioStoreRequest;
+use App\Http\Requests\TorneioUpdateRequest;
 
 class TorneioController extends Controller
 {
@@ -23,13 +26,15 @@ class TorneioController extends Controller
      */
     public function create()
     {
-        return view('painel.cadastrarTorneio');
+        $estados = DB::table('estados')->get();
+
+        return view('painel.cadastrarTorneio', compact('estados'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TorneioStoreRequest $request)
     {
         Campeonato::create($request->validated());
 
@@ -53,13 +58,13 @@ class TorneioController extends Controller
     {
         $campeonato = $adm_torneio;        
 
-        return view('painel.editar',compact('torneio'));
+        return view('painel.editar',compact('campeonato'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)/////>>>>ARRUMAR PARAMETROS!!!!!!//////
+    public function update(TorneioUpdateRequest $request, Campeonato $adm_torneio)
     {
        $validado = $request->validated();
 
@@ -77,7 +82,9 @@ class TorneioController extends Controller
      */
     public function destroy(Campeonato $adm_torneio)
     {
-        $adm_torneio->delete();
+        //$adm_torneio->delete();
+
+        //mudar o status do campeonato
 
         session()->flash('msg', 'Campeonato Deletado.');
 

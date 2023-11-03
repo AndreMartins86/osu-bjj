@@ -63,8 +63,7 @@ class PainelController extends Controller
      */
     public function edit(User $adm_painel) : View
     {
-        $user = $adm_painel;
-        //dd($user);
+        $user = $adm_painel;        
 
         return view('painel.editarUser',compact('user'));
     }
