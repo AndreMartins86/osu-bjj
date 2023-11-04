@@ -34,13 +34,45 @@ class TorneioController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(TorneioStoreRequest $request)
-    {
-        Campeonato::create($request->validated());
+    public function store(Request $request)
+    {        
 
-        session()->flash('msg', 'Campeonato Cadastrado.');
+        $folderPath = public_path('upload/');            
 
-        return redirect()->route('adm_painel.index');
+        $image_parts = explode(";base64,", $request->imagem);
+        //$image_type_aux = explode("image/", $image_parts[0]);
+        //$image_type = $image_type_aux[1];
+        $image_base64 = base64_decode($image_parts[1]);
+
+
+ 
+        $imageName = uniqid() . '.png';
+ 
+        $imageFullPath = $folderPath.$imageName;
+
+        $imagemPath = 'upload/'.$imageName;
+ 
+        file_put_contents($imageFullPath, $image_base64);
+ 
+         $campeonato =  new Campeonato;
+         $campeonato->imagem = $imagemPath;
+         $campeonato->titulo = 'teste';
+         $campeonato->dataCampeonato = '2022-03-03';
+         $campeonato->cidade = 'teste';
+         $campeonato->estado_id = 25;
+         $campeonato->sobre = 'teste';
+         $campeonato->local = 'teste';
+         $campeonato->informacoes = 'teste';
+         $campeonato->entradaPublico = 'teste';
+         $campeonato->tipo_id = 1;
+         $campeonato->fase_id = 1;
+         $campeonato->ativo = 1;
+
+         //dd($campeonato);
+
+         $campeonato->save();
+    
+        return response()->json(['success'=>'Crop Image Uploaded Successfully']);
     }
 
     /**
