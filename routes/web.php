@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PainelController;
 use App\Http\Controllers\TorneioController;
+use App\Mail\AdminMail;
 
 
 /*
@@ -32,5 +33,12 @@ Route::resource('/adm_painel', PainelController::class);
 Route::post('/filtrar', [PainelController::class, 'filtrarUsuario'])->name('filtrarUsuario');
 
 Route::resource('/adm_torneio', TorneioController::class);
+
+Route::get('/mail', function ()
+{
+	Mail::to('alinemota710@gmail.com')
+	->send(new AdminMail());
+
+});
 
 

@@ -52,20 +52,7 @@ class TorneioController extends Controller
  
         file_put_contents($imageFullPath, $image_base64);
  
-         $campeonato =  new Campeonato;
-
-         $campeonato->imagem = $imagemPath;
-         $campeonato->titulo = 'teste';
-         $campeonato->dataCampeonato = '2022-03-03';
-         $campeonato->cidade = 'teste';
-         $campeonato->estado_id = 25;
-         $campeonato->sobre = 'teste';
-         $campeonato->local = 'teste';
-         $campeonato->informacoes = 'teste';
-         $campeonato->entradaPublico = 'teste';
-         $campeonato->tipo_id = 1;
-         $campeonato->fase_id = 1;
-         $campeonato->ativo = 1;
+         $campeonato =  new Campeonato;       
 
          $campeonato->imagem = $imagemPath;
          $campeonato->titulo = $request->titulo;
@@ -101,19 +88,57 @@ class TorneioController extends Controller
      */
     public function edit(Campeonato $adm_torneio)
     {
+        $estados = DB::table('estados')->get();
+        $tipos = DB::table('tipos')->get();
+
         $campeonato = $adm_torneio;        
 
-        return view('painel.editar',compact('campeonato'));
+        return view('painel.editarTorneio',compact('campeonato', 'estados', 'tipos'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(TorneioUpdateRequest $request, Campeonato $adm_torneio)
+    public function update(Request $request, Campeonato $adm_torneio)
     {
-       $validado = $request->validated();
+       //$validado = $request->validated();
 
-       $adm_torneio->fill($validado);
+       //$adm_torneio->fill($validado);
+
+        $folderPath = public_path('upload/');            
+
+        $image_parts = explode(";base64,", $request->imagem);
+        //$image_type_aux = explode("image/", $image_parts[0]);
+        //$image_type = $image_type_aux[1];
+        $image_base64 = base64_decode($image_parts[1]);
+ 
+        $imageName = uniqid() . '.png';
+ 
+        $imageFullPath = $folderPath.$imageName;
+
+        $imagemPath = 'upload/'.$imageName;
+ 
+        file_put_contents($imageFullPath, $image_base64);
+ 
+         //$campeonato =  new Campeonato;       
+
+         $adm_torneio->imagem = $imagemPath;
+         $adm_torneio->titulo = $request->titulo;
+         $adm_torneio->dataCampeonato = $request->dataCampeonato;
+         $adm_torneio->cidade = $request->cidade;
+         $adm_torneio->estado_id = $request->estado_id;
+         $adm_torneio->sobre = $request->sobre;
+         $adm_torneio->local = $request->local;
+         $adm_torneio->informacoes = $request->informacoes;
+         $adm_torneio->entradaPublico = $request->entradaPublico;
+         $adm_torneio->tipo_id = $request->tipo_id;
+
+         $adm_torneio->fase_id = 1;
+         $adm_torneio->ativo = 1;
+
+         //dd($campeonato);
+
+         //$campeonato->save();
 
        $adm_torneio->update();
 
@@ -130,6 +155,10 @@ class TorneioController extends Controller
         //$adm_torneio->delete();
 
         //mudar o status do campeonato
+
+        adm_torneio->status = 0;
+
+        $adm_torneio->update();
 
         session()->flash('msg', 'Campeonato Deletado.');
 

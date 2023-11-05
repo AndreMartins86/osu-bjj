@@ -82,43 +82,111 @@
         @endif --}}
 
 
+
         <main class="col h-100 text-light p-4">
             <div class="d-flex align-items-end justify-content-between mb-4">
                 <h1 class="h3">Editar Usuário</h1>
 
-                <a href="{{ route('adm_painel.index') }}" class="btn btn-light">Voltar</a>
+                <a href="{{ route('adm_torneio.index') }}" class="btn btn-light">Voltar</a>
             </div>
 
-            <form action="{{ route('adm_painel.update', $user) }}" method="POST" class="bg-custom rounded col-12 py-3 px-4">
-                @csrf
-                @method('PUT')
-                
-                <div class="mb-3 row">
-                    <label for="usuario" class="col-sm-2 col-form-label">Usuário:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control bg-dark text-light border-dark" id="usuario" name="nome" value="{{ $user->nome }}" placeholder="Ex: Admin" value="Admin">
+            <form action="{{ route('adm_torneio.store') }}" method="POST" class="bg-custom rounded col-12 py-3 px-4" enctype="multipart/form-data" id="form">
+            @csrf
+<div class="mb-3 mt-3 row">
+    <div class="container" id='box-crop'>
+        <div id="preview-crop"></div>
+        <div id="box">
+            <h2 id="h2-avatar" style="color: DarkGray;">Capa</h2>            
+                <input type="file" name="imagem" id="avatar-image" placeholder="">            
+        </div>
+    </div>
+</div>
+            <div class="mb-3 mt-3 row">
+                <label for="titulo" class="col-sm-2 col-form-label">Título:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control bg-dark text-light border-dark" id="titulo" name="titulo" placeholder="Titulo" value="{{ $campeonato->titulo }}">
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label for="dataCampeonato" class="col-sm-2 col-form-label">Data da realização:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control bg-dark text-light border-dark" id="dataCampeonato" name="dataCampeonato" value="{{ $campeonato->dataCampeonato }}" placeholder="">
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label for="cidade" class="col-sm-2 col-form-label">Cidade:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control bg-dark text-light border-dark" id="cidade" name="cidade" placeholder="" value="{{ $campeonato->cidade}}">
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label for="local" class="col-sm-2 col-form-label">Local:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control bg-dark text-light border-dark" id="local" name="local" placeholder="" value="{{ $campeonato->local }}">
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label for="estado_id" class="col-form-label">Estado:</label>
+                <div class="col-2">
+                   <select name="estado_id" class="form-control bg-dark text-light border-dark form-select" id="estado_id">
+                    <option value="" disabled>Estado: </option>
+                         @foreach ($estados as $uf)
+                         @if($uf->id == $campeonato->estado_id)
+                            <option value="{{ $uf->id }}" {{ 'selected' }}>{{ $uf->nome }}</option>
+                            @else
+                            <option value="{{ $uf->id }}">{{ $uf->nome }}</option>
+                            @endif
+                          @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                     <div class="form-outline">
+                        <label class="form-label" for="sobre">Sobre: </label>
+                        <textarea name="sobre" class="form-control" id="sobre" rows="4" placeholder="">{{ $campeonato->sobre }}</textarea>
                     </div>
                 </div>
 
-                <div class="mb-3 row">
-                    <label for="email" class="col-sm-2 col-form-label">E-mail:</label>
-                    <div class="col-sm-10">
-                        <input type="email" class="form-control bg-dark text-light border-dark" id="email" name="email" value="{{ $user->email }}" placeholder="Ex: admin@kbrtec.com.br" value="admin@kbrtec.com.br">
+                   <div class="mb-3 row">
+                     <div class="form-outline">
+                        <label class="form-label" for="informacoes">Informações: </label>
+                        <textarea name="informacoes" class="form-control" id="informacoes" rows="4">{{ $campeonato->informacoes }}</textarea>
                     </div>
                 </div>
 
-                <div class="mb-3 row">
-                    <label for="senha" class="col-sm-2 col-form-label">Senha:</label>
-                    <div class="col-sm-10">
-                        <input type="password" name="password" class="form-control bg-dark text-light border-dark" id="senha">
+                   <div class="mb-3 row">
+                     <div class="form-outline">
+                        <label class="form-label" for="entPublico">Entrada Publica: </label>
+                        <textarea name="entPublico" class="form-control" id="entPublico" rows="4" placeholder="(Opcional)">{{ $campeonato->entPubico }}</textarea>
                     </div>
                 </div>
 
-                <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-light">Salvar</button>
-                </div>
-            </form>
 
+                <div class="mb-3 row">
+                    <label for="tipo_id" class="col-form-label">Tipo de Competição:</label>
+                    <div class="col-2">
+                    <select name="tipo_id" class="form-control bg-dark text-light border-dark form-select" id="tipo_id">
+                        <option value="">Selecione</option>                        
+                        @foreach ($tipos as $tipo)
+                         @if($tipo->id == $campeonato->tipo_id)
+                            <option value="{{ $tipo->id }}" {{ 'selected' }}>{{ $tipo->tipo }}</option>
+                            @else
+                            <option value="{{ $tipo->id }}">{{ $tipo->tipo }}</option>
+                            @endif
+                          @endforeach
+                   </select>
+               </div>
+               </div>
+
+               <div class="d-flex justify-content-end">
+                <button type="button" class="btn btn-light" id="submit">Alterar</button>
+            </div>
+        </form>
             <div class="bg-custom rounded overflow-hidden">
 
             </div>

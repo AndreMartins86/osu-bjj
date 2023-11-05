@@ -154,8 +154,8 @@
 
                    <div class="mb-3 row">
                      <div class="form-outline">
-                        <label class="form-label" for="entPublica">Entrada Publica: </label>
-                        <textarea name="entPublica" class="form-control" id="entPublica" rows="4" placeholder="(Opcional)">hauahuahuahauh</textarea>
+                        <label class="form-label" for="entPublico">Entrada Publica: </label>
+                        <textarea name="entPublico" class="form-control" id="entPublico" rows="4" placeholder="(Opcional)">hauahuahuahauh</textarea>
                     </div>
                 </div>
 

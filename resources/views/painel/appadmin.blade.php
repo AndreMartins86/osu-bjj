@@ -97,14 +97,7 @@
         });
       }
 
-      ////////////////////////////////////////////////////////////////////////
-
-      const extensions = {
-      'img/png':'png',
-      'img/jpeg':'jpeg',
-      'img/jpg':'jpg',
-
-    };
+      ////////////////////////////////////////////////////////////////////////      
 
     function criarBotao (textContent) {
       const button = document.createElement('button');
@@ -128,6 +121,8 @@
     const previewImagem = document.createElement('img');
     const enviar = document.getElementById('submit');
     const form = document.getElementById('form');
+
+    console.log(btnImagem);
 
 
                     
@@ -192,14 +187,44 @@
                     let cidade = document.getElementById('cidade').value;
                     let estado_id = document.getElementById('estado_id').value;
                     let sobre = document.getElementById('sobre').value;
-                    let entPublica = document.getElementById('entPublica').value;
+                    let entPublico = document.getElementById('entPublico').value;
                     let tipo_id = document.getElementById('tipo_id').value;
                     let local = document.getElementById('local').value;
                     let info = document.getElementById('informacoes').value;
                     
 
                     console.log(titulo);
-                    
+
+                    @if( strpos(url()->current(), "edit") )
+
+                    let esseID = "{{ $campeonato->id }}";
+
+
+                    let url = "{{ route('adm_torneio.show', ":id") }}+ esseID";
+                    //url = url.replace(':id', id);              
+
+                    $.ajax({
+                        type: "PUT",
+                        dataType: "json",
+                        url: url,
+                        data: {'_token': $('meta[name="_token"]').attr('content'), 'imagem': base64data,
+                        'titulo': titulo,
+                        'dataCampeonato': dataEvento,
+                         'cidade': cidade,
+                         'estado_id': estado_id,                         
+                         'sobre': sobre,
+                         'local': local,
+                         'informacoes': info,
+                         'entradaPublico': entPublico,
+                         'tipo_id': tipo_id
+                      },
+                        success: function(data){
+                            console.log(data);                            
+                            alert("Campeonato atualizado");
+                        }                   
+                        
+                    });
+                    @else
 
                     $.ajax({
                         type: "POST",
@@ -213,7 +238,7 @@
                          'sobre': sobre,
                          'local': local,
                          'informacoes': info,
-                         'entradaPublico': entPublica,
+                         'entradaPublico': entPublico,
                          'tipo_id': tipo_id
                       },
                         success: function(data){
@@ -222,6 +247,10 @@
                         }                   
                         
                     });
+
+                    @endif
+
+
                 }
             });
 
