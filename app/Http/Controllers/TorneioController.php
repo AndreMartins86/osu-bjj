@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Campeonato;
 use App\Http\Requests\TorneioStoreRequest;
 use App\Http\Requests\TorneioUpdateRequest;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use Maatwebsite\Excel\Facades\Excel as Excel;
+use App\Exports\UserExport;
 
 class TorneioController extends Controller
 {
@@ -156,7 +159,7 @@ class TorneioController extends Controller
 
         //mudar o status do campeonato
 
-        adm_torneio->status = 0;
+        $adm_torneio->status = 0;
 
         $adm_torneio->update();
 
@@ -164,4 +167,19 @@ class TorneioController extends Controller
 
         return redirect()->route('adm_torneio.index');
     }
+
+       public function gerarPDF()
+    {
+        $campeonatos = Campeonato::all();
+
+        $pdf = PDF::loadView('painel.pdfTorneios', compact('campeonatos'));
+
+        return $pdf->setPaper('a4')->stream('campeonatos.pdf');
+    }
+
+    public function gerarCSV()
+    {
+        return Excel::download(new UserExport(), 'usuarios-csv.csv');
+    }
+
 }

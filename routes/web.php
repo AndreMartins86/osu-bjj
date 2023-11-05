@@ -7,6 +7,8 @@ use App\Http\Controllers\TorneioController;
 use App\Mail\AdminMail;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use Maatwebsite\Excel\Facades\Excel as Excel;
+use App\Exports\UserExport;
 
 
 /*
@@ -34,6 +36,14 @@ Route::resource('/adm_painel', PainelController::class);
 
 Route::post('/filtrar', [PainelController::class, 'filtrarUsuario'])->name('filtrarUsuario');
 
+Route::get('/userpdf', [PainelController::class, 'gerarPDF'])->name('gerarUserPDF');
+
+Route::get('/usercsv', [PainelController::class, 'gerarCSV'])->name('gerarUserCSV');
+
+Route::get('/torneiopdf', [TorneioController::class, 'gerarPDF'])->name('gerarTorneioPDF');
+
+Route::get('/torneiocsv', [TorneioController::class, 'gerarCSV'])->name('gerarTorneioCSV');
+
 Route::resource('/adm_torneio', TorneioController::class);
 
 Route::get('/mail', function ()
@@ -43,14 +53,6 @@ Route::get('/mail', function ()
 
 });
 
-Route::get('/pdf', function()
-	{
-		$usuarios = User::all();
 
-		$pdf = PDF::loadView('pdf', compact('usuarios'));
-
-		return $pdf->setPaper('a4')->stream('usuarios.pdf');
-
-	});
 
 

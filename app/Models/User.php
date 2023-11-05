@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model; 
 
 class User extends Authenticatable
 {
@@ -43,4 +45,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public static function getAllUsersCSV()
+    {
+        $result = DB::table('users')
+        ->select('id', 'nome', 'role', 'email')
+        ->get()->toArray();
+
+        return $result;
+
+
+
+
+    }
+
+
+
+
 }

@@ -8,6 +8,9 @@ use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\PainelStoreRequest;
 use App\Http\Requests\PainelUpdateRequest;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use Maatwebsite\Excel\Facades\Excel as Excel;
+use App\Exports\UserExport;
 
 class PainelController extends Controller
 {
@@ -132,4 +135,21 @@ class PainelController extends Controller
 
         }
     }
+
+    public function gerarPDF()
+    {
+        $usuarios = User::all();
+
+        $pdf = PDF::loadView('painel.pdfUsers', compact('usuarios'));
+
+        return $pdf->setPaper('a4')->stream('usuarios.pdf');
+    }
+
+    public function gerarCSV()
+    {
+        return Excel::download(new UserExport(), 'usuarios-csv.csv');
+    }
+
+
+
 }
