@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PainelController;
 use App\Http\Controllers\TorneioController;
 use App\Mail\AdminMail;
+use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 
 /*
@@ -40,5 +42,15 @@ Route::get('/mail', function ()
 	->send(new AdminMail());
 
 });
+
+Route::get('/pdf', function()
+	{
+		$usuarios = User::all();
+
+		$pdf = PDF::loadView('pdf', compact('usuarios'));
+
+		return $pdf->setPaper('a4')->stream('usuarios.pdf');
+
+	});
 
 
