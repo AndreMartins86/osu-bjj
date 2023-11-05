@@ -108,7 +108,7 @@
             <div class="mb-3 row">
                 <label for="dataCampeonato" class="col-sm-2 col-form-label">Data da realização:</label>
                 <div class="col-sm-10">
-                    <input type="date" class="form-control bg-dark text-light border-dark" id="dataCampeonato" name="dataCampeonato" placeholder="">
+                    <input type="text" class="form-control bg-dark text-light border-dark" id="dataCampeonato" name="dataCampeonato" value="2001-02-02" placeholder="">
                 </div>
             </div>
 
@@ -116,6 +116,13 @@
                 <label for="cidade" class="col-sm-2 col-form-label">Cidade:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control bg-dark text-light border-dark" id="cidade" name="cidade" placeholder="" value="PRAIA GRANDE">
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label for="local" class="col-sm-2 col-form-label">Local:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control bg-dark text-light border-dark" id="local" name="local" placeholder="" value="ginasio">
                 </div>
             </div>
 
@@ -148,7 +155,7 @@
                    <div class="mb-3 row">
                      <div class="form-outline">
                         <label class="form-label" for="entPublica">Entrada Publica: </label>
-                        <textarea name="entPublica" class="form-control" id="sobre" rows="4" placeholder="(Opcional)">hauahuahuahauh</textarea>
+                        <textarea name="entPublica" class="form-control" id="entPublica" rows="4" placeholder="(Opcional)">hauahuahuahauh</textarea>
                     </div>
                 </div>
 
@@ -165,7 +172,7 @@
                </div>
 
                <div class="d-flex justify-content-end">
-                <button type="submit" class="btn btn-light" id="submit">Cadastrar</button>
+                <button type="button" class="btn btn-light" id="submit">Cadastrar</button>
             </div>
         </form>
 

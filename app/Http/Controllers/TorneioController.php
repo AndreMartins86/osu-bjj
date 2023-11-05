@@ -43,8 +43,6 @@ class TorneioController extends Controller
         //$image_type_aux = explode("image/", $image_parts[0]);
         //$image_type = $image_type_aux[1];
         $image_base64 = base64_decode($image_parts[1]);
-
-
  
         $imageName = uniqid() . '.png';
  
@@ -55,6 +53,7 @@ class TorneioController extends Controller
         file_put_contents($imageFullPath, $image_base64);
  
          $campeonato =  new Campeonato;
+
          $campeonato->imagem = $imagemPath;
          $campeonato->titulo = 'teste';
          $campeonato->dataCampeonato = '2022-03-03';
@@ -68,11 +67,25 @@ class TorneioController extends Controller
          $campeonato->fase_id = 1;
          $campeonato->ativo = 1;
 
+         $campeonato->imagem = $imagemPath;
+         $campeonato->titulo = $request->titulo;
+         $campeonato->dataCampeonato = $request->dataCampeonato;
+         $campeonato->cidade = $request->cidade;
+         $campeonato->estado_id = $request->estado_id;
+         $campeonato->sobre = $request->sobre;
+         $campeonato->local = $request->local;
+         $campeonato->informacoes = $request->informacoes;
+         $campeonato->entradaPublico = $request->entradaPublico;
+         $campeonato->tipo_id = $request->tipo_id;
+
+         $campeonato->fase_id = 1;
+         $campeonato->ativo = 1;
+
          //dd($campeonato);
 
          $campeonato->save();
     
-        return response()->json(['success'=>'Crop Image Uploaded Successfully']);
+        return response()->json(['success'=>'Cadastrado']);
     }
 
     /**

@@ -186,17 +186,41 @@
                 reader.onloadend = function() {
                     var base64data = reader.result; 
                     //console.log(base64data);
+
+                    let titulo = document.getElementById('titulo').value;
+                    let dataEvento = document.getElementById('dataCampeonato').value;
+                    let cidade = document.getElementById('cidade').value;
+                    let estado_id = document.getElementById('estado_id').value;
+                    let sobre = document.getElementById('sobre').value;
+                    let entPublica = document.getElementById('entPublica').value;
+                    let tipo_id = document.getElementById('tipo_id').value;
+                    let local = document.getElementById('local').value;
+                    let info = document.getElementById('informacoes').value;
+                    
+
+                    console.log(titulo);
                     
 
                     $.ajax({
                         type: "POST",
                         dataType: "json",
                         url: "{{ route('adm_torneio.store') }}",
-                        data: {'_token': $('meta[name="_token"]').attr('content'), 'imagem': base64data},
+                        data: {'_token': $('meta[name="_token"]').attr('content'), 'imagem': base64data,
+                        'titulo': titulo,
+                        'dataCampeonato': dataEvento,
+                         'cidade': cidade,
+                         'estado_id': estado_id,                         
+                         'sobre': sobre,
+                         'local': local,
+                         'informacoes': info,
+                         'entradaPublico': entPublica,
+                         'tipo_id': tipo_id
+                      },
                         success: function(data){
                             console.log(data);                            
-                            alert("Crop image successfully uploaded");
-                        }
+                            alert("Campeonato Cadastrado");
+                        }                   
+                        
                     });
                 }
             });

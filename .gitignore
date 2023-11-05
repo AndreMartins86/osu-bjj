@@ -18,3 +18,5 @@ yarn-error.log
 /.idea
 /.vscode
 /.phpintel
+/public/upload
+public/upload
