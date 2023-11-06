@@ -3,12 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PainelController;
+use App\Http\Controllers\AtletaController;
 use App\Http\Controllers\TorneioController;
 use App\Mail\AdminMail;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Maatwebsite\Excel\Facades\Excel as Excel;
-use App\Exports\UserExport;
+use App\Exports\UserExport;	
 
 
 /*
@@ -24,13 +25,24 @@ use App\Exports\UserExport;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
+Route::get('/login', [HomeController::class, 'login'])->name('login');
+
+Route::post('/autenticar', [HomeController::class, 'autenticar'])->name('autenticar');
+
+Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
+
 Route::get('/torneios', [HomeController::class, 'torneios'])->name('torneios');
 
 Route::post('/busca', [HomeController::class, 'buscar'])->name('buscar');
 
-Route::get('/area_atleta', [HomeController::class, 'atleta'])->name('atleta');
-
 Route::get('/integra/{campeonato}/{slug}', [HomeController::class, 'integra'])->name('integra');
+	
+Route::middleware('auth')->group(function () {
+	Route::get('/area_atleta', [HomeController::class, 'homeAtleta'])->name('homeAtleta');
+	
+});
+
+
 
 Route::resource('/adm_painel', PainelController::class);
 
@@ -45,6 +57,9 @@ Route::get('/torneiopdf', [TorneioController::class, 'gerarPDF'])->name('gerarTo
 Route::get('/torneiocsv', [TorneioController::class, 'gerarCSV'])->name('gerarTorneioCSV');
 
 Route::resource('/adm_torneio', TorneioController::class);
+
+
+
 
 Route::get('/mail', function ()
 {

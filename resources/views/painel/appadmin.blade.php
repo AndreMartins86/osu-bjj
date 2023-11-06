@@ -54,7 +54,9 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity="sha384-qlmct0AOBiA2VPZkMY3+2WqkHtIQ9lSdAsAn5RUJD/3vA5MKDgSGcdmIv4ycVxyn" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.js" integrity="sha512-Zt7blzhYHCLHjU0c+e4ldn5kGAbwLKTSOTERgqSNyTB50wWSI21z0q6bn/dEIuqf6HiFzKJ6cfj2osRhklb4Og==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
   <script type="text/javascript">
 
@@ -69,6 +71,8 @@
     @if (session('msg'))      
       alert("{{ session('msg') }}");
     @endif
+
+    //////pegar o id para o show
 
       function getButton(id){
 
@@ -97,9 +101,9 @@
         });
       }
 
-      ////////////////////////////////////////////////////////////////////////      
+      ////////////////////////////////////////////////////////////////////////
 
-    function criarBotao (textContent) {
+      function criarBotao (textContent) {
       const button = document.createElement('button');
       button.textContent = textContent;
       return button;
@@ -122,9 +126,7 @@
     const enviar = document.getElementById('submit');
     const form = document.getElementById('form');
 
-    console.log(btnImagem);
-
-
+    if(btnImagem){
                     
 
     btnImagem.addEventListener('change', e => {
@@ -261,6 +263,10 @@
       },300)  
 
     });
+}//////////
+
+
+
   </script>
 
 </body>

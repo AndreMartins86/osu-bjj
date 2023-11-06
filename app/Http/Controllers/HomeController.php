@@ -7,6 +7,8 @@ use Illuminate\View\View;
 use App\Models\Campeonato;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
 
 class HomeController extends Controller
 {
@@ -32,12 +34,6 @@ class HomeController extends Controller
 
      return view('torneios', compact('campeonatos', 'estados', 'tipos'));
  }
-
-
- public function atleta() : View
- {
-    return view('area_atleta.area_restrita');
-}
 
 
 public function integra(Campeonato $campeonato, string $slug) : View
@@ -83,5 +79,54 @@ public function buscar(Request $req) : View
 
     return view('torneios', compact('campeonatos', 'tipos', 'estados'));
 }
+
+public function autenticar (Request $request): RedirectResponse
+    {
+        $credencial = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required']
+        ]);        
+
+        if(auth()->attempt(['email'=> $request->email, 'password' => $request->password])){
+            $request->session()->regenerate();
+
+            return redirect()->intended(route('homeAtleta'));
+            
+        }
+
+        return back()->withErrors([
+            'email' => 'email incorreto',
+            'password' => 'senha incorreta'
+
+        ])->onlyInput('email');
+        
+    }
+
+public function logout(Request $req) : View
+{
+    Auth::logout();
+
+    $req->session()->invalidate();
+
+    $req->session()->regenerateToken();
+
+    return view('index');
+
+}
+
+public function login() : View
+{
+    return view('atleta.login');
+
+}
+
+public function homeAtleta()
+    {
+        return view('atleta.area_restrita');
+    }
+
+
+
+
 
 }

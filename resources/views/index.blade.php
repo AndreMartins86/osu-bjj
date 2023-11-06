@@ -2,7 +2,21 @@
 
 @section('title', 'Campeonato de Jiu Jitsu')
 
-@section('conteudo') 
+@section('conteudo')
+@if (session('message'))
+<div class="container">
+    <div class="alert alert-danger" role="alert">
+      {{ session('message') }}      
+    </div>
+</div>
+@endif
+ @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+@endif
     <header>
       <nav class="bg-white border-gray-200">
         <div
@@ -57,7 +71,7 @@
               </li>
               <li>
                 <a
-                  href="{{ route('atleta') }}"
+                  href="{{ route('homeAtleta') }}"
                   class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center"
                 >
                   Área do competidor
@@ -346,7 +360,7 @@
             >
           </li>
           <li>
-            <a href="{{ route('atleta') }}" class="mr-4 hover:underline md:mr-6"
+            <a href="{{ route('homeAtleta') }}" class="mr-4 hover:underline md:mr-6"
               >Área do competidor</a
             >
           </li>
